@@ -23,3 +23,6 @@
 
 # Ignore environment info
 .env
+
+# Ignore uploaded files
+# public/system/
