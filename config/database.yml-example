@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: gsapp_development
+  pool: 5
+  username: gsapp
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: gsapp_test
+  pool: 5
+  username: gsapp
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: gsapp_production
+  pool: 5
+  username: gsapp
+  password:
