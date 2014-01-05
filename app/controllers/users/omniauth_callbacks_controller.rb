@@ -2,23 +2,23 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :verify_authenticity_token
 
   def facebook
-    authenticate :facebook
+    authenticate_with :facebook
   end
 
   def linkedin
-    authenticate :linkedin
+    authenticate_with :linkedin
   end
 
   def instagram
-    authenticate :instagram
+    authenticate_with :instagram
   end
 
   def google_oauth2
-    authenticate :google_oauth2
+    authenticate_with :google_oauth2
   end
 
   def github
-    authenticate :github
+    authenticate_with :github
   end
 
   def destroy
@@ -29,16 +29,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def authenticate(kind)
+  def authenticate_with(kind)
     omniauth = request.env['omniauth.auth']
-    @user = User.includes(:authentications).merge(
+    user = User.includes(:authentications).merge(
       Authentication.where(provider: omniauth['provider'],
         uid: omniauth['uid'])).references(:authentications).first
 
-    if @user
-      @user.update_auth_info auth_hash(kind, omniauth), user_hash(kind, omniauth)
+    if user
+      user.update_auth_info auth_hash(kind, omniauth), user_hash(kind, omniauth)
       sign_in @user, event: :authentication
-      redirect_to after_sign_in_path_for @user
+      redirect_to after_sign_in_path_for(@user)
     elsif current_user
       current_user.update_auth_info auth_hash(kind, omniauth), user_hash(kind, omniauth)
       redirect_to edit_user_registration_url
@@ -50,12 +50,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.authentications.build(auth_hash(kind, omniauth))
       if user.save validate: false
         sign_in user
-        redirect_to after_sign_in_path_for user
+        redirect_to after_sign_in_path_for(user)
       end
     end
   end
 
-  def provider_auth_hash(provider, hash)
+  def auth_hash(provider, hash)
     case provider
     when :facebook
       {
@@ -119,7 +119,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def provider_user_hash(provider, hash)
+  def user_hash(provider, hash)
     case provider
     when :facebook
       { name: hash['info']['name'], email: hash['info']['email'] }

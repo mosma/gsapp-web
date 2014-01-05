@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', "~> 4.0.2"
 gem 'pg'
 
 gem 'uglifier'
@@ -15,6 +15,11 @@ gem 'omniauth-linkedin'
 gem 'omniauth-instagram'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
+
+gem 'geocoder'
+gem 'friendly_id', '~> 5.0.0'
+gem 'postgres_ext'
+gem 'paperclip', "~> 2.8"
 
 gem 'mandrill-api'
 gem 'mailchimp-api'
@@ -39,7 +44,7 @@ group :development, :test do
   gem 'colored'
   gem 'simplecov'
   gem 'better_errors'
-  gem 'binding_of_caller'
+  #gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-debugger'
