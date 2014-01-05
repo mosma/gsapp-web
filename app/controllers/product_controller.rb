@@ -14,6 +14,8 @@ class ProductController < ApplicationController
   end
 
   def show
+    @garage = @product.garage
+    @products = @garage.products
   end
 
   def edit

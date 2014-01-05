@@ -1,5 +1,50 @@
-<h1>Product: <%= @product.name %></h1>
-<p>
-Description: 
-<%= @product.description %>
-</p>
+<div class="row">
+<section class="col-md-9">
+  <h2>Garage: <%= @garage.name %></h2>
+  <h1>Product: <%= @product.name %></h1>
+  <%= render "shared/media_carousel", product: @product%>
+  <p>
+    Description: 
+    <%= @product.description %>
+  </p>
+</section>
+<section class="col-md-3">
+  <h5>
+    <span class="label label-info"><i class="glyphicon glyphicon-heart-empty"></i> 23</span>
+    <span class="label label-info"><i class="glyphicon glyphicon-eye-open"></i> 7748</span>
+  </h5>
+
+  <hr>
+  
+  <h2>promote</h2>
+
+  <hr>
+
+  <h2>tags</h2>
+  <% @product.tags.each do |tag| %>
+    <span class="label label-warning"><%= link_to tag, '#' %></span>
+  <% end %>
+  <hr>
+
+  <h2>See more from</h2>
+  <%= link_to @garage do %>
+    <%= image_tag @garage.avatar, class: "img-thumbnail" %>
+    <h1>
+      <%= @garage.name %>
+      <span class="label label-info"><%=@garage.products.size%></span>
+    </h1>
+  <% end %>
+  <h5>
+    <span class="label label-info"><i class="glyphicon glyphicon-heart-empty"></i> 23</span>
+    <span class="label label-info"><i class="glyphicon glyphicon-eye-open"></i> 7748</span>
+  </h5>
+
+</section>
+</div>
+
+<div class="row">
+   <h1>Other products of <%= link_to @product.garage.name, @product.garage%></h1>
+  <% @products.each do |product| %>
+    <%= render "shared/product_thumb", product: product %>
+  <% end %>
+</div>

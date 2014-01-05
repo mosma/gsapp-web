@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20140105052151) do
     t.text     "description"
     t.float    "value"
     t.string   "currency"
-    t.string   "tags",         default: [], array: true
-    t.integer  "medias_count"
+    t.string   "tags",        default: [], array: true
+    t.integer  "media_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

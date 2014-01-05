@@ -21,7 +21,9 @@ gem 'omniauth-github'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
 gem 'postgres_ext'
-gem 'paperclip', "~> 2.8"
+gem 'paperclip', "~> 3.5.2"
+gem 'aws-sdk'
+gem 'money'
 
 gem 'mandrill-api'
 gem 'mailchimp-api'

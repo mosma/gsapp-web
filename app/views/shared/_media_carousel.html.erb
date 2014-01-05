@@ -1,0 +1,28 @@
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <% product.medias.each_with_index do |media,index| %>
+    <li data-target="#carousel-example-generic" data-slide-to="<%=index%>" class="<%= "active" if index==0 %>"></li>
+    <% end %>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+
+    <% product.medias.each_with_index do |media,index| %>
+    <div class="item <%= "active" if index==0 %>">
+      <%= image_tag media.image %>
+      <div class="carousel-caption"></div>
+    </div>
+    <% end %>
+
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>

@@ -9,7 +9,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :currency
       t.string :tags, array: true, default: []
 
-      t.integer :medias_count
+      t.integer :media_count
 
       t.timestamps
     end

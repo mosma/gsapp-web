@@ -1,4 +1,36 @@
-<h1>Products</h1>
-<% @products.each do |product| %>
-  <%= render "shared/product_thumb", product: product %>
-<% end %>
+<div class="row">
+<section class="col-md-9">
+  <h1>Products</h1>
+  <% @products.each do |product| %>
+    <%= render "shared/product_thumb", product: product %>
+  <% end %>
+</section>
+<section class="col-md-3">
+  
+  <%= image_tag @garage.avatar, class: "img-thumbnail" %>
+  <h1><%= @garage.name %></h1>
+  <h5>
+    <span class="label label-info"><i class="glyphicon glyphicon-heart-empty"></i> 23</span>
+    <span class="label label-info"><i class="glyphicon glyphicon-eye-open"></i> 7748</span>
+  </h5>
+  <p>
+    <%= @garage.description %>
+  </p>
+
+  <hr>
+
+  <h2>promote</h2>
+
+  <hr>
+
+  <h2>tags</h2>
+  <% @garage.tags.each do |tag| %>
+    <span class="label label-warning"><%= link_to tag, '#' %></span>
+  <% end %>
+
+  <hr>
+
+
+</section>  
+</div>
+

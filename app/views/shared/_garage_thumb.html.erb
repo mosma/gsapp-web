@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-md-3">
+  <%= link_to garage_path(garage) do %>
+  <div class="thumbnail">
+    <%= image_tag garage.avatar %>
+    <div class="caption">
+      <h3>
+        <%= truncate(garage.name, length: 20) %>
+        <span class="label label-info"><%=garage.products.size%></span>
+      </h3>
+      <p><%= truncate(garage.description, length: 20) %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
