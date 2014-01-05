@@ -1,0 +1,11 @@
+<div class="col-sm-6 col-md-3">
+  <%= link_to product_path(product.garage, product) do %>
+  <div class="thumbnail">
+    <%= image_tag product.image %>
+    <div class="caption">
+      <h3><%= truncate(product.name, length: 20) %></h3>
+      <p><%= truncate(product.name, length: 20) %></p>
+    </div>
+  </div>
+  <% end %>
+</div>

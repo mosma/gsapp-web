@@ -2,6 +2,8 @@ class CreateMedia < ActiveRecord::Migration
   def change
     create_table :media do |t|
       
+      t.references :product
+
       t.string   "image_file_name"
       t.string   "image_content_type"
       t.integer  "image_file_size"

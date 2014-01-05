@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140105052151) do
   add_index "garages", ["user_id"], name: "index_garages_on_user_id", using: :btree
 
   create_table "media", force: true do |t|
+    t.integer  "product_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

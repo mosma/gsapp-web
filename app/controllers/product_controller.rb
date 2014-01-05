@@ -1,5 +1,5 @@
 class ProductController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:show]
 
   def index
