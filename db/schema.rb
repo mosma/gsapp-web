@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105020650) do
+ActiveRecord::Schema.define(version: 20140105052151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,11 @@ ActiveRecord::Schema.define(version: 20140105020650) do
     t.string   "slug"
     t.text     "description"
     t.text     "link"
-    t.string   "tags",           default: [], array: true
+    t.string   "tags",                default: [], array: true
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.integer  "products_count"
     t.text     "latitude"
     t.text     "longitude"
@@ -66,6 +70,21 @@ ActiveRecord::Schema.define(version: 20140105020650) do
   add_index "garages", ["slug"], name: "index_garages_on_slug", unique: true, using: :btree
   add_index "garages", ["user_id"], name: "index_garages_on_user_id", using: :btree
 
+  create_table "media", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+    t.string   "descrition"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
     t.integer  "garage_id"
     t.string   "name"
@@ -73,8 +92,8 @@ ActiveRecord::Schema.define(version: 20140105020650) do
     t.text     "description"
     t.float    "value"
     t.string   "currency"
-    t.string   "tags",        default: [], array: true
-    t.integer  "media_count"
+    t.string   "tags",         default: [], array: true
+    t.integer  "medias_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

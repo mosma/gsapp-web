@@ -7,8 +7,12 @@ class CreateGarages < ActiveRecord::Migration
       t.text :description
       t.text :link
       t.string :tags, array: true, default: []
-      t.attachment :avatar
-      
+
+      t.string   "avatar_file_name"
+      t.string   "avatar_content_type"
+      t.integer  "avatar_file_size"
+      t.datetime "avatar_updated_at"
+
       t.integer :products_count
 
       t.text :latitude
