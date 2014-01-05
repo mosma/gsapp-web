@@ -16,7 +16,7 @@
 /tmp
 
 # Ignore common database configurations
-/config/database.yml
+# /config/database.yml
 
 # Ignora DS_store
 .DS_Store
@@ -25,4 +25,4 @@
 .env
 
 # Ignore uploaded files
-# public/system/
+# /public/system/
