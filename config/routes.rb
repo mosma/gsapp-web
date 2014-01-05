@@ -34,9 +34,10 @@ GsappWeb::Application.routes.draw do
 
   get ':name/new' => 'product#new', as: :new_product
   post ':name/new' => 'product#create'
-  get ':name/:product/edit' => 'product#edit'
-  post ':name/:product' => 'product#update'
-  get ':name/:product' => 'product#show', as: :product
+  get ':name/:id/edit' => 'product#edit', as: :edit_product
+  post ':name/:id' => 'product#update', as: :update_product
+  patch ':name/:id' => 'product#update'
+  get ':name/:id' => 'product#show', as: :product
   
   post ':name' => 'garage#update'
   get ':name' => 'garage#show', as: :garage

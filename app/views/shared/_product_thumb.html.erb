@@ -6,6 +6,15 @@
       <h1><span class="label label-success"><%=  show_value product %></span></h1>
       <h3><%= truncate(product.name, length: 20) %></h3>
       <p><%= truncate(product.description, length: 20) %></p>
+      <% if is_my_product? product %>
+      <p>
+        <%= link_to edit_product_path my_garage, product do %>
+          <span class="label label-info">
+          <i class="glyphicon glyphicon-pencil"></i> edit
+          </span>
+        <% end %>
+      </p>
+      <% end %>
     </div>
   </div>
   <% end %>
