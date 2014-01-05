@@ -1,5 +1,16 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'with authentications sign up' do
+    it 'updates authentication info' do
+    end
+  end
+  context 'with authentications login' do
+    it 'updates authentication info' do
+    end
+  end
+  context 'with authentications linking' do
+    it 'updates authentication info' do
+    end
+  end
 end

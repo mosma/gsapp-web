@@ -1,15 +1,74 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the HomeHelper. For example:
-#
-# describe HomeHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 describe HomeHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "GET/POST 'facebook'" do
+    it "creates a new user" do
+      post :facebook
+      response.should be_success
+    end
+    it "logs user in" do
+      post :facebook
+      response.should be_success
+    end
+    it "links user's account" do
+      post :facebook
+      response.should be_success
+    end
+  end
+  describe "GET/POST 'linkedin'" do
+    it "returns http success" do
+      post :linkedin
+      response.should be_success
+    end
+    it "logs user in" do
+      post :linkedin
+      response.should be_success
+    end
+    it "links user's account" do
+      post :linkedin
+      response.should be_success
+    end
+  end
+  describe "GET/POST 'instagram'" do
+    it "returns http success" do
+      post :instagram
+      response.should be_success
+    end
+    it "logs user in" do
+      post :instagram
+      response.should be_success
+    end
+    it "links user's account" do
+      post :instagram
+      response.should be_success
+    end
+  end
+  describe "GET/POST 'google_oauth2'" do
+    it "returns http success" do
+      post :google_oauth2
+      response.should be_success
+    end
+    it "logs user in" do
+      post :google_oauth2
+      response.should be_success
+    end
+    it "links user's account" do
+      post :google_oauth2
+      response.should be_success
+    end
+  end
+  describe "GET/POST 'github'" do
+    it "returns http success" do
+      post :github
+      response.should be_success
+    end
+    it "logs user in" do
+      post :github
+      response.should be_success
+    end
+    it "links user's account" do
+      post :github
+      response.should be_success
+    end
+  end
 end

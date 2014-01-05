@@ -8,9 +8,7 @@ class User < ActiveRecord::Base
 
   def update_auth_info (user, auth)
     self.update_attributes user
-    token = self.authentications.find_or_initialize_by 
-      provider: auth[:provider],
-      uid: auth[:uid]
+    token = self.authentications.find_or_initialize_by provider: auth[:provider], uid: auth[:uid]
     token.update_attributes auth
     end  
 end
