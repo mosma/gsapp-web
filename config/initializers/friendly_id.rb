@@ -20,7 +20,7 @@ FriendlyId.defaults do |config|
     login logout users admin faq contact garage product gsapp garagesale
     garagesaleapp api developer dev profile garages products garagesales
     gsapps stylesheets assets javascripts images secret verification validation
-    user search results city state)
+    user search results city state promote tag_price takeone widget business_card)
 
   #  ## Friendly Finders
   #

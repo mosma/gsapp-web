@@ -4,9 +4,11 @@
       <%= my_garage.name %>
       <b class="caret"></b></a>
     <ul class="dropdown-menu">
+      <li><%= link_to "new product", new_product_path(my_garage) %></li>
+      <li class="divider"></li>
       <li><%= link_to "my garage", my_garage_path %></li>
       <li><%= link_to "profile", profile_path %></li>
-      <li><a href="#">promote</a></li>
+      <li><%= link_to "promote", promote_path(my_garage) %></li>
       <li class="divider"></li>
       <li><%= link_to "Log out", logout_path, :method => :delete  %></li>
     </ul>

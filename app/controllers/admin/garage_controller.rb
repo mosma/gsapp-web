@@ -1,4 +1,5 @@
 class Admin::GarageController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
   # before_filter :authenticate_user!
   # GET /garages

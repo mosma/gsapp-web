@@ -1,5 +1,4 @@
 GsappWeb::Application.routes.draw do
-
   root 'home#index'
 
   get 'index' => 'home#index'
@@ -26,7 +25,15 @@ GsappWeb::Application.routes.draw do
   get 'garages' => 'garage#index'
   get 'profile' => 'garage#edit'
   post 'profile' => 'garage#update'
-  
+
+  get ":name/promote" => 'promote#index', as: :promote
+  get ":name/promote/widget" => 'promote#widget' , as: :promote_widget
+  get ":name/promote/takeone" => 'promote#takeone', as: :promote_takeone
+  get ":name/promote/business_card" => 'promote#business_card', as: :business_card
+  get ":name/promote/tag_price" => 'promote#tag_price', as: :tag_price
+
+  get ':name/new' => 'product#new', as: :new_product
+  post ':name/new' => 'product#create'
   get ':name/:product/edit' => 'product#edit'
   post ':name/:product' => 'product#update'
   get ':name/:product' => 'product#show', as: :product

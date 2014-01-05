@@ -5,6 +5,14 @@ class ProductController < ApplicationController
   def index
   end
 
+  def new
+    @product = my_garage.products.build
+  end
+
+  def create
+    
+  end
+
   def show
   end
 
