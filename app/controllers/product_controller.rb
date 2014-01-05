@@ -10,7 +10,18 @@ class ProductController < ApplicationController
   end
 
   def create
+    @product = my_garage.products.build(product_params)
+    @product.slug = nil if @product.slug.empty?
     
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to product_path(my_garage, @product), notice: 'Report was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @product }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
@@ -32,6 +43,6 @@ class ProductController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name)
+      params.require(:product).permit(:name, :slug, :currency, :value, :tags, :description)
     end
 end

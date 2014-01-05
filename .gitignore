@@ -25,4 +25,4 @@
 .env
 
 # Ignore uploaded files
-# /public/system/
+/public/system/

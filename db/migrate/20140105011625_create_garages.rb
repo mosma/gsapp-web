@@ -2,7 +2,7 @@ class CreateGarages < ActiveRecord::Migration
   def change
     create_table :garages do |t|
       t.references :user, index: true
-      t.string :name
+      t.string :name, nul: false
       t.string :slug
       t.text :description
       t.text :link

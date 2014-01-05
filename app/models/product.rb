@@ -4,6 +4,10 @@ class Product < ActiveRecord::Base
   belongs_to :garage, counter_cache: true
   has_many :medias
 
+  validates :name, presence: true
+  validates :value, presence: true
+  validates :currency, presence: true
+
   friendly_id :name, use: :slugged
 
   def image

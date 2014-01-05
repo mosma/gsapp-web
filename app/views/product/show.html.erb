@@ -1,6 +1,6 @@
 <div class="row">
 <section class="col-md-9">
-  <h2>Garage: <%= @garage.name %></h2>
+  <h2>Garage: <%= link_to @garage.name, @garage %></h2>
   <h1>Product: <%= @product.name %></h1>
   <%= render "shared/media_carousel", product: @product%>
   <p>

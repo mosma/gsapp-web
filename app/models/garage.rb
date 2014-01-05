@@ -10,6 +10,8 @@ class Garage < ActiveRecord::Base
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename"
 
+  validates :name, presence: true
+
   geocoded_by :address
   friendly_id :name, use: :slugged
 
