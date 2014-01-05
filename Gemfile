@@ -59,3 +59,5 @@ group :test do
   # gem 'webmock'
 end
 
+gem 'rails_12factor', group: :production
+
