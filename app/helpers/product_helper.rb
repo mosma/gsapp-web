@@ -1,5 +1,6 @@
 module ProductHelper
   def is_my_product? product
+    return false if !user_signed_in?
     product.garage == my_garage
   end
   def show_value product
