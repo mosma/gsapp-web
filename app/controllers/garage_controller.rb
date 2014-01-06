@@ -1,6 +1,6 @@
 class GarageController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update]
-  before_action :set_garage, only: [:show]
+  before_action :set_garage, only: [:show, :tags]
 
   def index
   end
@@ -13,6 +13,11 @@ class GarageController < ApplicationController
   end
 
   def update
+  end
+
+
+  def tags
+    render inline: Product.where(garage: @garage).pluck(:tags).flatten.uniq.to_json
   end
 
   private

@@ -13,5 +13,6 @@ class CreateProducts < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index  :products, :tags, using: 'gin'
   end
 end

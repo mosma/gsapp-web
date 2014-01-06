@@ -7,6 +7,7 @@ gem 'pg'
 
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 
@@ -48,7 +49,7 @@ group :development, :test do
   gem 'colored'
   gem 'simplecov'
   gem 'better_errors'
-  #gem 'binding_of_caller'
+  gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-debugger'

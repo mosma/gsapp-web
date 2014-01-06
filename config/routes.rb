@@ -32,6 +32,8 @@ GsappWeb::Application.routes.draw do
   get ":name/promote/business_card" => 'promote#business_card', as: :business_card
   get ":name/promote/tag_price" => 'promote#tag_price', as: :tag_price
 
+  get ':name/tags' => 'garage#tags', as: :garage_tags
+  
   get ':name/new' => 'product#new', as: :new_product
   post ':name/new' => 'product#create'
   get ':name/:id/edit' => 'product#edit', as: :edit_product
