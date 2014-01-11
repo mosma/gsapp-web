@@ -10,6 +10,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :value, presence: true
   validates :currency, presence: true
+  after_validation :validate_currency
 
   friendly_id :name, use: :slugged
 
@@ -36,4 +37,14 @@ class Product < ActiveRecord::Base
   def garage_name
     garage.name
   end
+
+  private
+
+    def validate_currency
+      begin
+        Money.new(self.value*100, self.currency)
+      rescue Exception => e
+        self.update_attribute(:currency, 'USD')
+      end
+    end
 end

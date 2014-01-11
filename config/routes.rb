@@ -1,4 +1,11 @@
 GsappWeb::Application.routes.draw do
+  get "media/index"
+  get "media/show"
+  get "media/new"
+  get "media/edit"
+  get "media/create"
+  get "media/update"
+  get "media/destroy"
   root 'home#index'
 
   get 'index' => 'home#index'

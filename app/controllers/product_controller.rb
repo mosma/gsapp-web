@@ -11,6 +11,8 @@ class ProductController < ApplicationController
   end
 
   def create
+    @path = new_product_path(my_garage)
+
     @product = my_garage.products.build(product_params)
     @product.slug = nil if @product.slug.empty?
 

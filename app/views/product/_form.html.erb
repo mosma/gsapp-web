@@ -1,7 +1,7 @@
 
-
+<%= form_for(@product, url: @path) do |f| %> 
   <div class="col-md-6">
-<%= form_for(@product, url: path) do |f| %>
+
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -36,14 +36,14 @@
   <%= f.label :description %>
   <%= f.text_area :description, class: "form-control" %>  
 </div>
-<% end %>
+
   </div>
   <div class="col-md-6">
     <h1>Photos</h1>
 
 
 
- <%= form_for Media.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+ <%= fields_for Media.new, :html => { :multipart => true, :id => "fileupload"  } do |fi| %>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="row fileupload-buttonbar">
       <div class="span7">
@@ -51,7 +51,7 @@
         <span class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
-          <%= f.file_field :image %>
+          <%= fi.file_field :image %>
         </span>
         <button type="submit" class="btn btn-primary start">
           <i class="icon-upload icon-white"></i>
@@ -94,4 +94,5 @@
     <%= f.submit %>
   </div>  
   </div>
+  <% end %>
   
