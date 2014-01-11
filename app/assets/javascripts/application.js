@@ -17,4 +17,5 @@
 //= require jquery.ui.position
 //= require jquery.ui.autocomplete
 //= require turbolinks
+//= require jquery-fileupload
 //= require_tree .

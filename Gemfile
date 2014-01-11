@@ -25,6 +25,7 @@ gem 'postgres_ext'
 gem 'paperclip', "~> 3.5.2"
 gem 'aws-sdk'
 gem 'money'
+gem 'jquery-fileupload-rails'
 
 gem 'mandrill-api'
 gem 'mailchimp-api'

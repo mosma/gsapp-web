@@ -18,7 +18,9 @@ GsappWeb::Application.routes.draw do
 
   namespace :admin do
     resources :garages do
-      resources :products
+      resources :products do
+        resources :medias
+      end
     end
   end
 

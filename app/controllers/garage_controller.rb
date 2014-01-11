@@ -17,7 +17,11 @@ class GarageController < ApplicationController
 
 
   def tags
-    render inline: Product.where(garage: @garage).pluck(:tags).flatten.uniq.to_json
+    tags = Product.where(garage: @garage).pluck(:tags).flatten.uniq
+    tags = tags.select do |item| 
+      item =~ /^#{params[:q]}/  
+    end unless params[:q].blank?
+    render inline: tags.to_json
   end
 
   private
