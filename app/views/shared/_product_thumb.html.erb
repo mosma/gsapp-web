@@ -1,5 +1,5 @@
 <div class="col-sm-6 col-md-4">
-  <%= link_to product_path(product.garage, product) do %>
+  <%= link_to product_path(name: product.garage_name, id: product.slug) do %>
   <div class="thumbnail">
     <%= image_tag product.image %>
     <div class="caption">

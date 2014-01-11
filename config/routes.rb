@@ -24,6 +24,11 @@ GsappWeb::Application.routes.draw do
     end
   end
 
+  get "search" => "search#index"
+  get "search/:query" => "search#index"
+  get "search/tags/:tag" => "search#tags"
+  get "search/category/:category" => "search#category"
+
   get 'garages' => 'garage#index'
   get 'profile' => 'garage#edit'
   post 'profile' => 'garage#update'

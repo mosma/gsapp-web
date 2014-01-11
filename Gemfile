@@ -26,6 +26,7 @@ gem 'paperclip', "~> 3.5.2"
 gem 'aws-sdk'
 gem 'money'
 gem 'jquery-fileupload-rails'
+gem 'tire'
 
 gem 'mandrill-api'
 gem 'mailchimp-api'

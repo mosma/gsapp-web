@@ -1,6 +1,9 @@
 class Garage < ActiveRecord::Base
   extend FriendlyId
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   belongs_to :user
   has_many :products
 
@@ -15,7 +18,16 @@ class Garage < ActiveRecord::Base
   geocoded_by :address
   friendly_id :name, use: :slugged
 
+  def self.search(params)
+    tire.search(load: true) do
+      query { string params[:query], default_operator: "OR" } if params[:query].present?
+      # TODO create a filter for garage status
+      #filter :range, published_at: {lte: Time.zone.now}
+    end
+  end
+
   def address
     [street, city, state, country].compact.join(', ')
   end
+  
 end

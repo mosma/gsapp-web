@@ -88,18 +88,19 @@ ActiveRecord::Schema.define(version: 20140105052151) do
 
   create_table "products", force: true do |t|
     t.integer  "garage_id"
-    t.string   "name"
+    t.string   "name",                      null: false
     t.string   "slug"
     t.text     "description"
-    t.float    "value"
-    t.string   "currency"
-    t.string   "tags",        default: [], array: true
+    t.float    "value",       default: 0.0
+    t.string   "currency",                  null: false
+    t.string   "tags",        default: [],               array: true
     t.integer  "media_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "products", ["garage_id"], name: "index_products_on_garage_id", using: :btree
+  add_index "products", ["tags"], name: "index_products_on_tags", using: :gin
 
   create_table "users", force: true do |t|
     t.string   "name"
