@@ -86,4 +86,7 @@ GsappWeb::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+  # heroku elasticsearch
+  ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL']
 end
