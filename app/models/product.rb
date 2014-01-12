@@ -14,19 +14,19 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
-  mapping do
-    indexes :id, type: 'integer'
-    indexes :garage_id, type: 'integer'
-    indexes :name, boost: 10
-    indexes :slug, boost: 10
-    indexes :description
-    indexes :value, type: 'value'
-    indexes :currency, type: 'stirng'
-    indexes :tags, type: 'string'
-    indexes :media_count, type: 'integer'
-    indexes :created_at, type: 'date'
-    indexes :updated_at, type: 'date'
-  end
+  # mapping do
+  #   indexes :id, type: 'integer'
+  #   indexes :garage_id, type: 'integer'
+  #   indexes :name, boost: 10
+  #   indexes :slug, boost: 10
+  #   indexes :description
+  #   indexes :value, type: 'value'
+  #   indexes :currency, type: 'stirng'
+  #   indexes :tags, type: 'string'
+  #   indexes :media_count, type: 'integer'
+  #   indexes :created_at, type: 'date'
+  #   indexes :updated_at, type: 'date'
+  # end
 
   def self.search(params)
     tire.search() do

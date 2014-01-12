@@ -1,7 +1,12 @@
-<div class="col-sm-6 col-md-3">
+<div class="garage-thumb">
   <%= link_to garage_path(garage) do %>
   <div class="thumbnail">
-    <%= image_tag garage.avatar %>
+    <style type="text/css" media="screen">
+      .thumbnail .img<%= garage.id  %> {
+        background-image: url(<%= garage.avatar  %>)
+      }
+    </style>
+    <div class="img img<%= garage.id  %>"></div>
     <div class="caption">
       <h3>
         <%= truncate(garage.name, length: 20) %>

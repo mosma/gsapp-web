@@ -1,7 +1,13 @@
-<div class="col-sm-6 col-md-4">
+<div class="product-thumb">
   <%= link_to product_path(name: product.garage_name, id: product.slug) do %>
   <div class="thumbnail">
-    <%= image_tag product.image %>
+    <style type="text/css" media="screen">
+      .thumbnail .img<%= product.id  %> {
+        background-image: url(<%= product.image  %>)
+      }
+    </style>
+    <div class="img img<%= product.id  %>"></div>
+    
     <div class="caption">
       <h1><span class="label label-success"><%=  show_value product %></span></h1>
       <h3><%= truncate(product.name, length: 20) %></h3>

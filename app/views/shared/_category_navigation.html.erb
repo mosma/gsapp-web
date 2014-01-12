@@ -1,3 +1,6 @@
+<ul class="list-inline" id="category-breadcumb">
+  <li><a href="#" id="<%= category.id %>" class="category-navigation-bread"><%= category.name %></a></li>
+</ul>
 <ul class="list-inline" id="category-menu">
   <li><a href="#" id="<%= category.id %>" class="category-navigation"><%= category.name %></a></li>
   <% category.children.each do |child| %>
@@ -9,6 +12,8 @@
 
 var category_navigation = function() {
 
+  var bread = [{id: <%= category.id %>, name: '<%= category.name %>'}]
+
   var list = [
     {id: <%= category.id %>, name: '<%= category.name %>'},
     <% category.children.each do |child| %>
@@ -19,16 +24,17 @@ var category_navigation = function() {
   $(".category-navigation").click(click_navigation);
 
   function load_data(data) {
-    console.log("loading")
+    var parent = {id: data.info.id, name: data.info.name}
     if (data.children.length == 0) return
-     list = [{id: data.info.id, name: data.info.name}]
-     $.each(data.children, function (idx, child) {
+    manage_breadcumb(parent)
+
+    list = [parent]
+    $.each(data.children, function (idx, child) {
       list.push( {id: child.id, name: child.name} )
-     });
+    });
   }
 
   function render_menu() {
-    console.log("rendering")
     $("#category-menu").html("");
     $.each(list,function(idx, item) {
       $("#category-menu").append('<li><a href="#" id="' +item.id+ '" class="category-navigation">' +item.name+ '</a></li>')
@@ -36,15 +42,48 @@ var category_navigation = function() {
     $(".category-navigation").click(click_navigation);
   }
 
+  function manage_breadcumb(item) {
+    var limit = 0;
+    $.each(bread,function(idx, bb) {
+      if (item.id == bb.id) { 
+        limit = idx+1;
+       }
+    });
+    if (limit == 0) {
+      bread.push(item)
+    }
+    else {
+      bread = bread.slice(0,limit);
+    }
+  }
+
+  function render_breadcumb() {
+    $("#category-breadcumb").html("");
+    $.each(bread,function(idx, item) {
+      $("#category-breadcumb").append('<li><a href="#" id="' +item.id+ '" class="category-navigation-bread">' +item.name+ '</a></li>')
+    });
+    $(".category-navigation-bread").click(click_navigation);
+
+  }
+
+  function find_products(term) {
+    if(/all/i.test(term)) {
+      term = 'a*'
+    }
+    $.get( "/search/"+term+"?no_layout=true", function( data ) {
+      $("#product-list").html(data)
+    });
+  }
+
   function click_navigation(e) {
     e.preventDefault();
     var id = $(this).attr("id");
-    console.log("finding for: "+id)
     $.get( "/category/"+id+'.json', function( data ) {
-      console.log("response")
       load_data(data)
       render_menu()
+      render_breadcumb()
     });
+    find_products($(this).html())
   }
 
 }

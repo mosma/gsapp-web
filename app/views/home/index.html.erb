@@ -1,17 +1,20 @@
 <section class="row">
 
-<h1>Categories</h1>
-<%= render "shared/category_navigation", category: @category %>
+  <h1>Categories</h1>
+  <%= render "shared/category_navigation", category: @category %>
 
-<h1>Garages</h1>
+  <h1>Products</h1>
+  <nav id="product-list">
+  <% @products.each do |product| %>
+    <%= render "shared/product_thumb", product: product %>
+  <% end %>
+  </nav>
+</section>
+
+<section class="row">
+<h1>Picked Garages</h1>
 <% @garages.each do |garage| %>
   <%= render "shared/garage_thumb", garage: garage %>
 <% end %>
 </section>
 
-<section class="row">
-<h1>Products</h1>
-<% @products.each do |product| %>
-  <%= render "shared/product_thumb", product: product %>
-<% end %>
-</section>
