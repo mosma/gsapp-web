@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @category = Category.root
     @garages = Garage.all
     @products = Product.all
   end

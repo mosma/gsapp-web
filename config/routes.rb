@@ -31,6 +31,9 @@ GsappWeb::Application.routes.draw do
     end
   end
 
+  get "category" => "category#index"
+  get "category/:id" => "category#show"
+
   get "search" => "search#index"
   get "search/:query" => "search#index"
   get "search/tags/:tag" => "search#tags"

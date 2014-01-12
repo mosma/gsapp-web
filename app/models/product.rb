@@ -14,11 +14,29 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  mapping do
+    indexes :id, type: 'integer'
+    indexes :garage_id, type: 'integer'
+    indexes :name, boost: 10
+    indexes :slug, boost: 10
+    indexes :description
+    indexes :value, type: 'value'
+    indexes :currency, type: 'stirng'
+    indexes :tags, type: 'string'
+    indexes :media_count, type: 'integer'
+    indexes :created_at, type: 'date'
+    indexes :updated_at, type: 'date'
+  end
+
   def self.search(params)
     tire.search() do
-      query { string params[:query], default_operator: "OR" } if params[:query].present?
-      # TODO create a filter for product status
-      #filter :range, published_at: {lte: Time.zone.now}
+      query do
+        boolean do 
+          must { string params[:query], default_operator: "OR" } if params[:query].present?
+          # TODO create a filter for product status 
+          #must { range :status eq 10}
+        end
+      end
     end
   end
 
