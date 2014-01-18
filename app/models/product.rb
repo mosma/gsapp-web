@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
   after_validation :validate_currency
 
   friendly_id :name, use: :slugged
+  acts_as_votable
 
   # mapping do
   #   indexes :id, type: 'integer'

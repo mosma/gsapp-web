@@ -17,7 +17,8 @@ class Garage < ActiveRecord::Base
 
   geocoded_by :address
   friendly_id :name, use: :slugged
-
+  acts_as_votable
+  
   def self.search(params)
     tire.search(load: true) do
       query { string params[:query], default_operator: "OR" } if params[:query].present?

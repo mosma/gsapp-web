@@ -1,6 +1,6 @@
 class GarageController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update]
-  before_action :set_garage, only: [:show, :tags]
+  before_filter :authenticate_user!, only: [:edit, :update, :like, :unlike]
+  before_action :set_garage, only: [:show, :tags, :like, :unlike]
 
   def index
   end
@@ -15,6 +15,21 @@ class GarageController < ApplicationController
   def update
   end
 
+  def like
+    @garage.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render action: 'show', status: :created, location: @garage  }
+    end
+  end
+
+  def unlike
+    @garage.unliked_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render action: 'show', status: :created, location: @garage  }
+    end
+  end
 
   def tags
     tags = Product.where(garage: @garage).pluck(:tags).flatten.uniq

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111230128) do
+ActiveRecord::Schema.define(version: 20140118192856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140111230128) do
     t.string   "slug"
     t.text     "description"
     t.text     "link"
-    t.string   "tags",                default: [], array: true
+    t.string   "tags",                  default: [], array: true
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -76,8 +76,18 @@ ActiveRecord::Schema.define(version: 20140111230128) do
     t.text     "country"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total",    default: 0
+    t.integer  "cached_votes_score",    default: 0
+    t.integer  "cached_votes_up",       default: 0
+    t.integer  "cached_votes_down",     default: 0
+    t.integer  "cached_weighted_score", default: 0
   end
 
+  add_index "garages", ["cached_votes_down"], name: "index_garages_on_cached_votes_down", using: :btree
+  add_index "garages", ["cached_votes_score"], name: "index_garages_on_cached_votes_score", using: :btree
+  add_index "garages", ["cached_votes_total"], name: "index_garages_on_cached_votes_total", using: :btree
+  add_index "garages", ["cached_votes_up"], name: "index_garages_on_cached_votes_up", using: :btree
+  add_index "garages", ["cached_weighted_score"], name: "index_garages_on_cached_weighted_score", using: :btree
   add_index "garages", ["slug"], name: "index_garages_on_slug", unique: true, using: :btree
   add_index "garages", ["user_id"], name: "index_garages_on_user_id", using: :btree
 
@@ -105,17 +115,27 @@ ActiveRecord::Schema.define(version: 20140111230128) do
 
   create_table "products", force: true do |t|
     t.integer  "garage_id"
-    t.string   "name",                      null: false
+    t.string   "name",                                null: false
     t.string   "slug"
     t.text     "description"
-    t.float    "value",       default: 0.0
-    t.string   "currency",                  null: false
-    t.string   "tags",        default: [],               array: true
+    t.float    "value",                 default: 0.0
+    t.string   "currency",                            null: false
+    t.string   "tags",                  default: [],               array: true
     t.integer  "media_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total",    default: 0
+    t.integer  "cached_votes_score",    default: 0
+    t.integer  "cached_votes_up",       default: 0
+    t.integer  "cached_votes_down",     default: 0
+    t.integer  "cached_weighted_score", default: 0
   end
 
+  add_index "products", ["cached_votes_down"], name: "index_products_on_cached_votes_down", using: :btree
+  add_index "products", ["cached_votes_score"], name: "index_products_on_cached_votes_score", using: :btree
+  add_index "products", ["cached_votes_total"], name: "index_products_on_cached_votes_total", using: :btree
+  add_index "products", ["cached_votes_up"], name: "index_products_on_cached_votes_up", using: :btree
+  add_index "products", ["cached_weighted_score"], name: "index_products_on_cached_weighted_score", using: :btree
   add_index "products", ["garage_id"], name: "index_products_on_garage_id", using: :btree
   add_index "products", ["tags"], name: "index_products_on_tags", using: :gin
 
@@ -137,5 +157,20 @@ ActiveRecord::Schema.define(version: 20140111230128) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "votes", force: true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
 end

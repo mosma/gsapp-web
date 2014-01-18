@@ -10,8 +10,22 @@
   <%= image_tag @garage.avatar, class: "img-thumbnail" %>
   <h1><%= @garage.name %></h1>
   <h5>
-    <span class="label label-info"><i class="glyphicon glyphicon-heart-empty"></i> 23</span>
-    <span class="label label-info"><i class="glyphicon glyphicon-eye-open"></i> 7748</span>
+    <span class="label label-info">
+      <i class="glyphicon glyphicon-heart-empty"></i> 
+      <%= @garage.likes.size %>
+    </span>
+    <% if current_user and !current_user.voted_for? @garage %>
+    <%= link_to 'like', garage_like_path(@garage) %>
+    <% elsif current_user and current_user.voted_for? @garage %>
+    <%= link_to 'unlike', garage_unlike_path(@garage) %>
+    <% else %>
+    login to vote
+    <% end %>
+    <br>
+    <span class="label label-info">
+      <i class="glyphicon glyphicon-eye-open"></i> 
+      7748
+    </span>
   </h5>
   <p>
     <%= @garage.description %>

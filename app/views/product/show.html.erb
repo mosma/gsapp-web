@@ -10,8 +10,22 @@
 </section>
 <section class="col-md-3">
   <h5>
-    <span class="label label-info"><i class="glyphicon glyphicon-heart-empty"></i> 23</span>
-    <span class="label label-info"><i class="glyphicon glyphicon-eye-open"></i> 7748</span>
+    <span class="label label-info">
+      <i class="glyphicon glyphicon-heart-empty"></i> 
+      <%= @product.likes.size %>
+    </span>
+    <% if current_user and !current_user.voted_for? @product %>
+    <%= link_to 'like', product_like_path(@garage, @product) %>
+    <% elsif current_user and current_user.voted_for? @product %>
+    <%= link_to 'unlike', product_unlike_path(@garage, @product) %>
+    <% else %>
+    login to vote
+    <% end %>
+    <br>
+    <span class="label label-info">
+      <i class="glyphicon glyphicon-eye-open"></i> 
+    7748
+  </span>
   </h5>
       <% if is_my_product? @product %>
       <p>

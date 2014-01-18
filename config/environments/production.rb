@@ -91,6 +91,6 @@ GsappWeb::Application.configure do
   ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL']
 
   #redis 2 go config
-  uri = URI.parse(ENV["REDISTOGO_URL"])
-  REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+  #uri = URI.parse(ENV["REDISTOGO_URL"])
+  #REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 end

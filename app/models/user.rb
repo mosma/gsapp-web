@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_one :garage
   accepts_nested_attributes_for :garage
-  
+  acts_as_voter
+
   def update_auth_info (user, auth)
     self.update_attributes user
     token = self.authentications.find_or_initialize_by provider: auth[:provider], uid: auth[:uid]

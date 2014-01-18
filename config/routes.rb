@@ -46,14 +46,20 @@ GsappWeb::Application.routes.draw do
   get ":name/promote/tag_price" => 'promote#tag_price', as: :tag_price
 
   get ':name/tags' => 'garage#tags', as: :garage_tags
-  
+
+  get ':name/like' => 'garage#like', as: :garage_like
+  get ':name/unlike' => 'garage#unlike', as: :garage_unlike
+
   get ':name/new' => 'product#new', as: :new_product
   post ':name/new' => 'product#create'
   get ':name/:id/edit' => 'product#edit', as: :edit_product
   post ':name/:id' => 'product#update', as: :update_product
   patch ':name/:id' => 'product#update'
   get ':name/:id' => 'product#show', as: :product
-  
+
+  get ':name/:id/like' => 'product#like', as: :product_like
+  get ':name/:id/unlike' => 'product#unlike', as: :product_unlike
+
   post ':name' => 'garage#update'
   get ':name' => 'garage#show', as: :garage
   

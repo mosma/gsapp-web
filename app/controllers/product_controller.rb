@@ -1,6 +1,6 @@
 class ProductController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_action :set_product, only: [:show, :edit, :update]
+  before_filter :authenticate_user!, except: [:index, :show, :like, :unlike]
+  before_action :set_product, only: [:show, :edit, :update, :like, :unlike]
 
   def index
   end
@@ -50,6 +50,22 @@ class ProductController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def like
+    @product.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render action: 'show', status: :created, location: @product  }
+    end
+  end
+
+  def unlike
+    @product.unliked_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render action: 'show', status: :created, location: @product  }
     end
   end
 
