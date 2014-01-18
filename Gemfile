@@ -30,6 +30,7 @@ gem 'jquery-fileupload-rails'
 gem 'tire'
 gem 'redis'
 gem 'acts_as_votable'
+gem 'impressionist'
 
 gem 'mandrill-api'
 gem 'mailchimp-api'

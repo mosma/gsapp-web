@@ -30,6 +30,12 @@ class ProductController < ApplicationController
   def show
     @garage = @product.garage
     @products = @garage.products
+    respond_to do |format|
+      format.html do
+        impressionist(@product)
+      end
+      format.json { render inline: '{}'  }
+    end
   end
 
   def edit
@@ -57,7 +63,7 @@ class ProductController < ApplicationController
     @product.liked_by current_user
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render action: 'show', status: :created, location: @product  }
+      format.json { render inline: '{}'  }
     end
   end
 
@@ -65,7 +71,7 @@ class ProductController < ApplicationController
     @product.unliked_by current_user
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render action: 'show', status: :created, location: @product  }
+      format.json { render inline: '{}'  }
     end
   end
 
@@ -78,5 +84,9 @@ class ProductController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :slug, :currency, :value, :tags, :description)
+    end
+
+    def impressions
+      impressionist(@product)
     end
 end

@@ -10,6 +10,5 @@ function search_form() {
   });
 }
 
-
 $(document).ready(search_form);
 $(document).on("page:load",search_form);

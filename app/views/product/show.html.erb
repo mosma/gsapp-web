@@ -9,11 +9,12 @@
   </p>
 </section>
 <section class="col-md-3">
-  <h5>
+  <p>
     <span class="label label-info">
       <i class="glyphicon glyphicon-heart-empty"></i> 
       <%= @product.likes.size %>
     </span>
+     &nbsp;
     <% if current_user and !current_user.voted_for? @product %>
     <%= link_to 'like', product_like_path(@garage, @product) %>
     <% elsif current_user and current_user.voted_for? @product %>
@@ -21,12 +22,13 @@
     <% else %>
     login to vote
     <% end %>
-    <br>
+  </p>
+  <p>
     <span class="label label-info">
       <i class="glyphicon glyphicon-eye-open"></i> 
-    7748
+    <%= @product.impressionist_count(:filter=>:session_hash) %>
   </span>
-  </h5>
+  </p>
       <% if is_my_product? @product %>
       <p>
         <%= link_to edit_product_path my_garage, @product do %>

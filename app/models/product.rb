@@ -17,6 +17,7 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
   acts_as_votable
+  is_impressionable
 
   # mapping do
   #   indexes :id, type: 'integer'

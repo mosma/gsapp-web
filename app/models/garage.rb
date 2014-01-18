@@ -18,6 +18,7 @@ class Garage < ActiveRecord::Base
   geocoded_by :address
   friendly_id :name, use: :slugged
   acts_as_votable
+  is_impressionable
   
   def self.search(params)
     tire.search(load: true) do

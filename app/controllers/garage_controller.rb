@@ -7,6 +7,12 @@ class GarageController < ApplicationController
 
   def show
     @products = @garage.products
+    respond_to do |format|
+      format.html do
+        impressionist(@garage)
+      end
+      format.json { render inline: '{}' }
+    end
   end
 
   def edit
@@ -19,7 +25,7 @@ class GarageController < ApplicationController
     @garage.liked_by current_user
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render action: 'show', status: :created, location: @garage  }
+      format.json { render inline: '{}'  }
     end
   end
 
@@ -27,7 +33,7 @@ class GarageController < ApplicationController
     @garage.unliked_by current_user
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render action: 'show', status: :created, location: @garage  }
+      format.json { render inline: '{}'  }
     end
   end
 

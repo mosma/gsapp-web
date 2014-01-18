@@ -9,11 +9,12 @@
   
   <%= image_tag @garage.avatar, class: "img-thumbnail" %>
   <h1><%= @garage.name %></h1>
-  <h5>
+  <p>
     <span class="label label-info">
       <i class="glyphicon glyphicon-heart-empty"></i> 
       <%= @garage.likes.size %>
     </span>
+    &nbsp;
     <% if current_user and !current_user.voted_for? @garage %>
     <%= link_to 'like', garage_like_path(@garage) %>
     <% elsif current_user and current_user.voted_for? @garage %>
@@ -21,12 +22,13 @@
     <% else %>
     login to vote
     <% end %>
-    <br>
+    </p>
+    <p>
     <span class="label label-info">
       <i class="glyphicon glyphicon-eye-open"></i> 
-      7748
+      <%= @garage.impressionist_count(:filter=>:session_hash) %>
     </span>
-  </h5>
+  </p>
   <p>
     <%= @garage.description %>
   </p>
