@@ -3,6 +3,9 @@ class Product < ActiveRecord::Base
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
+
+  after_create :get_new_media
+  after_update :get_product_media
   
   belongs_to :garage, counter_cache: true
   has_many :medias
@@ -52,6 +55,10 @@ class Product < ActiveRecord::Base
     medias.first.image
   end
 
+  def user
+    garage.user
+  end
+
   def garage_name
     garage.name
   end
@@ -64,5 +71,15 @@ class Product < ActiveRecord::Base
       rescue Exception => e
         self.update_attribute(:currency, 'USD')
       end
+    end
+
+    def get_new_media
+      media = Media.new_media_for self.user, nil
+      media.each { |m|  m.update_attributes(product: self, new_product: false)}
+    end
+
+    def get_product_media
+      media = Media.new_media_for self.user, self
+      media.each { |m|  m.update_attributes(new_product: false)}
     end
 end

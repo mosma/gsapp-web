@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140111230128) do
   add_index "garages", ["user_id"], name: "index_garages_on_user_id", using: :btree
 
   create_table "media", force: true do |t|
+    t.integer  "user_id"
     t.integer  "product_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -91,11 +92,16 @@ ActiveRecord::Schema.define(version: 20140111230128) do
     t.string   "video_content_type"
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
+    t.boolean  "new_product",        default: true
     t.string   "descrition"
     t.integer  "order"
+    t.integer  "status",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "media", ["product_id"], name: "index_media_on_product_id", using: :btree
+  add_index "media", ["user_id"], name: "index_media_on_user_id", using: :btree
 
   create_table "products", force: true do |t|
     t.integer  "garage_id"

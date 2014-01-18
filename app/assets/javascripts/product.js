@@ -3,6 +3,34 @@
 
 
 function tagitLoad() {
+
+ $('#fileupload').fileupload();
+      // 
+      // Load existing files:
+      var media_url = $('#fileupload').prop('action')
+
+      var product = $('#media_product_id');
+
+      if (product.val() != undefined) {
+        media_url = media_url + "?product_id="+product.val()
+      }
+
+      $.getJSON(media_url, function (files) {
+        var fu = $('#fileupload').data('blueimpFileupload'), 
+          template;
+        fu._adjustMaxNumberOfFiles(-files.length);
+        console.log(files);
+        template = fu._renderDownload(files)
+          .appendTo($('#fileupload .files'));
+        // Force reflow:
+        fu._reflow = fu._transition && template.length &&
+          template[0].offsetWidth;
+        template.addClass('in');
+        $('#loading').remove();
+      });
+
+
+
   if (typeof(jQuery.ui.tagit) != 'undefined'){
     $("#tagit-tags").tagit({
       allowSpaces: false,

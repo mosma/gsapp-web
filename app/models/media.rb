@@ -1,5 +1,6 @@
 class Media < ActiveRecord::Base
 
+  belongs_to :user
   belongs_to :product, counter_cache: true
 
   has_attached_file :image, 
@@ -19,10 +20,17 @@ class Media < ActiveRecord::Base
     {
       "name" => read_attribute(:upload_file_name),
       "size" => read_attribute(:upload_file_size),
-      "url" => upload.url(:original),
-      "delete_url" => upload_path(self),
+      "url" => image.url,
+      "thumbnail_url" => image.url(:thumb),
+      "new_product" => new_product,
+      "delete_url" => medium_path(self),
       "delete_type" => "DELETE" 
     }
+  end
+
+  def self.new_media_for user, product
+    return where(product: product, user: user) unless product.nil?
+    where(new_product: true, user: user)
   end
 
 end
