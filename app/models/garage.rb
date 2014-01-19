@@ -50,5 +50,13 @@ class Garage < ActiveRecord::Base
   def is_deleted?
     self.status == STATUS[:visible]
   end
+
+  def available_status
+    [
+      ['Visible', STATUS[:visible]],
+      ['Invisible', STATUS[:invisible]],
+      ['On Hold', STATUS[:on_hold]],
+    ]
+  end
   
 end

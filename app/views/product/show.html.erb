@@ -1,67 +1,45 @@
 <div class="row">
+
 <section class="col-md-9">
   <h2>Garage: <%= link_to @garage.name, @garage %></h2>
   <h1>Product: <%= @product.name %></h1>
-  <%= render "shared/media_carousel", product: @product%>
+  <%= render "shared/media_carousel", product: @product %>
   <p>
     Description: 
     <%= @product.description %>
   </p>
 </section>
+
 <section class="col-md-3">
-  <p>
-    <span class="label label-info">
-      <i class="glyphicon glyphicon-heart-empty"></i> 
-      <%= @product.likes.size %>
-    </span>
-     &nbsp;
-    <% if current_user and !current_user.voted_for? @product %>
-    <%= link_to 'like', product_like_path(@garage, @product) %>
-    <% elsif current_user and current_user.voted_for? @product %>
-    <%= link_to 'unlike', product_unlike_path(@garage, @product) %>
-    <% else %>
-    login to vote
-    <% end %>
-  </p>
-  <p>
-    <span class="label label-info">
-      <i class="glyphicon glyphicon-eye-open"></i> 
-    <%= @product.impressionist_count(:filter=>:session_hash) %>
-  </span>
-  </p>
-      <% if is_my_product? @product %>
-      <p>
-        <%= link_to edit_product_path my_garage, @product do %>
-          <span class="label label-info">
-          <i class="glyphicon glyphicon-pencil"></i> edit
-          </span>
-        <% end %>
-      </p>
-      <% end %>
-  <hr>
+
+<h3>Social</h3>
+ <%= render 'shared/social_product' %>
+ <%= render 'shared/impressions_product' %>
   
-  <h2>promote</h2>
-
   <hr>
 
-  <h2>tags</h2>
+  <% if is_my_product? @product %>
+    <p>
+      <%= link_to edit_product_path my_garage, @product do %>
+        <span class="label label-info">
+        <i class="glyphicon glyphicon-pencil"></i> edit
+        </span>
+      <% end %>
+    </p>
+  <hr>
+  <% end %>
+
+  <h3>tags</h3>
   <% @product.tags.each do |tag| %>
     <span class="label label-warning"><%= link_to tag, '#' %></span>
   <% end %>
+
   <hr>
 
-  <h2>See more from</h2>
-  <%= link_to @garage do %>
-    <%= image_tag @garage.avatar, class: "img-thumbnail" %>
-    <h1>
-      <%= @garage.name %>
-      <span class="label label-info"><%=@garage.products.size%></span>
-    </h1>
-  <% end %>
-  <h5>
-    <span class="label label-info"><i class="glyphicon glyphicon-heart-empty"></i> 23</span>
-    <span class="label label-info"><i class="glyphicon glyphicon-eye-open"></i> 7748</span>
-  </h5>
+  <h3>See more from</h3>
+  <%= render 'shared/garage_profile' %>
+  <%= render 'shared/social_garage' %>
+  <%= render 'shared/impressions_garage' %>
 
 </section>
 </div>

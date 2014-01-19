@@ -1,0 +1,7 @@
+<%= link_to @garage do %>
+  <%= image_tag @garage.avatar, class: "img-thumbnail" %>
+  <h1>
+    <%= @garage.name %>
+    <span class="label label-info"><%=@garage.products.size%></span>
+  </h1>
+<% end %>

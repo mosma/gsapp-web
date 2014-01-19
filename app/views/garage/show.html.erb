@@ -1,45 +1,35 @@
 <div class="row">
+
 <section class="col-md-9">
   <h1>Products</h1>
   <% @products.each do |product| %>
     <%= render "shared/product_thumb", product: product %>
   <% end %>
 </section>
+
 <section class="col-md-3">
   
-  <%= image_tag @garage.avatar, class: "img-thumbnail" %>
-  <h1><%= @garage.name %></h1>
-  <p>
-    <span class="label label-info">
-      <i class="glyphicon glyphicon-heart-empty"></i> 
-      <%= @garage.likes.size %>
-    </span>
-    &nbsp;
-    <% if current_user and !current_user.voted_for? @garage %>
-    <%= link_to 'like', garage_like_path(@garage) %>
-    <% elsif current_user and current_user.voted_for? @garage %>
-    <%= link_to 'unlike', garage_unlike_path(@garage) %>
-    <% else %>
-    login to vote
-    <% end %>
-    </p>
-    <p>
-    <span class="label label-info">
-      <i class="glyphicon glyphicon-eye-open"></i> 
-      <%= @garage.impressionist_count(:filter=>:session_hash) %>
-    </span>
-  </p>
+  <% if is_my_garage? @garage %>
+  <h3> Statistics </h3>
+  <ul>
+    <li>17 unique views <small>8 last week</small></li>
+    <li>134 page-views <small>45 last week</small></li>
+    <li>123 likes <small>14 last week</small></li>
+  </ul>
+  <hr>
+  <% end %>
+
+  <%= render 'shared/garage_profile' %>
+  <%= render 'shared/social_garage' %>
+  <%= render 'shared/impressions_garage' %>
+
   <p>
     <%= @garage.description %>
   </p>
 
   <hr>
 
-  <h2>promote</h2>
-
-  <hr>
-
-  <h2>tags</h2>
+  <h3>tags</h3>
   <% @garage.tags.each do |tag| %>
     <span class="label label-warning"><%= link_to tag, '#' %></span>
   <% end %>

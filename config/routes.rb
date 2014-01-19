@@ -34,10 +34,11 @@ GsappWeb::Application.routes.draw do
   get "search/category/:category" => "search#category"
 
   get 'garages' => 'garage#index'
-  get 'profile' => 'garage#edit'
-  post 'profile' => 'garage#update'
 
   resources :media
+
+  get ':name/profile' => 'garage#edit', as: :profile
+  patch ':name/profile' => 'garage#update'
 
   get ":name/promote" => 'promote#index', as: :promote
   get ":name/promote/widget" => 'promote#widget' , as: :promote_widget

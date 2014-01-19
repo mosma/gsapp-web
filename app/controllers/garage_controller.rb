@@ -1,6 +1,6 @@
 class GarageController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update, :like, :unlike]
-  before_action :set_garage, only: [:show, :tags, :like, :unlike]
+  before_action :set_garage, only: [:show, :edit, :update, :tags, :like, :unlike]
 
   def index
   end
@@ -19,6 +19,21 @@ class GarageController < ApplicationController
   end
 
   def update
+    garage = garage_params
+    garage[:tags] = garage[:tags].split(',')
+    respond_to do |format|
+      if @garage.update_attributes(garage)
+        if @garage.slug.empty?
+          @garage.slug = nil
+          @garage.save
+        end
+        format.html { redirect_to profile_path(my_garage), notice: 'Product was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @garage }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @garage.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def like
@@ -53,6 +68,6 @@ class GarageController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def garage_params
-      params.require(:garage).permit(:name)
+      params.require(:garage).permit(:name,:name, :slug, :description, :link, :tags, :status, :avatar, :latitude, :longitude, :street, :city, :state, :country)
     end
 end
