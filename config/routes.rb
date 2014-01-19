@@ -44,6 +44,7 @@ GsappWeb::Application.routes.draw do
   get ':name/statistics' => 'garage#statistics', as: :garage_statistics
 
   get ":name/promote" => 'promote#index', as: :promote
+  get ":name/promote/social_networks" => 'promote#social_networks' , as: :promote_social_networks
   get ":name/promote/widget" => 'promote#widget' , as: :promote_widget
   get ":name/promote/takeone" => 'promote#takeone', as: :promote_takeone
   get ":name/promote/business_card" => 'promote#business_card', as: :business_card
