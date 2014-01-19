@@ -1,6 +1,7 @@
 class GarageController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update, :like, :unlike]
-  before_action :set_garage, only: [:show, :edit, :update, :tags, :like, :unlike]
+  before_action :set_garage, only: [:show, :edit, :update, :tags, :like, :unlike, 
+    :localization, :update_localization, :statistics]
 
   def index
   end
@@ -34,6 +35,31 @@ class GarageController < ApplicationController
         format.json { render json: @garage.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def localization
+  end
+
+  def update_localization
+    garage = garage_params
+    respond_to do |format|
+      if @garage.update_attributes(garage)
+        if @garage.slug.empty?
+          @garage.slug = nil
+          @garage.save
+        end
+        format.html { redirect_to localization_path(my_garage), notice: 'Product was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @garage }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @garage.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def statistics
+    
   end
 
   def like

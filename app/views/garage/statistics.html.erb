@@ -1,0 +1,19 @@
+<div class="row">
+  <h1><%= my_garage.name %> <small>estatisticas</small></h1>
+  <section class="col-md-2">
+<ul class="nav nav-pills nav-stacked">
+  <li><%= link_to "garage info", profile_path(my_garage) %></li>
+  <li><%= link_to "localization", localization_path(my_garage) %></li>
+  <li><%= link_to 'user', edit_user_registration_path %></li>
+  <li><%= link_to 'statistics', garage_statistics_path(my_garage) %></li>
+</ul>
+  </section>
+  <section class="col-md-10">
+    <h2>Visitas únicas</h2>
+    <p>72</p>
+    <h3>Visualizações</h3>
+    <p>123</p>
+    <h3>Likes</h3>
+    <p>12</p>
+  </section>
+</div>

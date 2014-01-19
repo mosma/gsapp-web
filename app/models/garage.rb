@@ -1,4 +1,6 @@
 class Garage < ActiveRecord::Base
+  after_validation :geocode
+  
   extend FriendlyId
 
   include Tire::Model::Search

@@ -21,7 +21,7 @@ FriendlyId.defaults do |config|
     garagesaleapp api developer dev profile garages products garagesales
     gsapps stylesheets assets javascripts images secret verification validation
     user search results city state promote tag_price takeone widget business_card
-    medias media )
+    medias media localization localizations)
 
   #  ## Friendly Finders
   #

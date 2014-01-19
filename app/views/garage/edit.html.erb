@@ -1,11 +1,11 @@
 <div class="row">
-  <h1><%= my_garage.name %> <small>profile</small></h1>
+  <h1><%= my_garage.name %> <small>garage</small></h1>
   <section class="col-md-2">
 <ul class="nav nav-pills nav-stacked">
-  <li><%= link_to 'Garage Info', '#'%></li>
-  <li><%= link_to 'Localization', '#'%></li>
-  <li><%= link_to 'Profile Info', '#'%></li>
-  <li><%= link_to 'Statistics', '#'%></li>
+  <li><%= link_to "garage info", profile_path(my_garage) %></li>
+  <li><%= link_to "localization", localization_path(my_garage) %></li>
+  <li><%= link_to 'user', edit_user_registration_path %></li>
+  <li><%= link_to 'statistics', garage_statistics_path(my_garage) %></li>
 </ul>
   </section>
   <section class="col-md-10">

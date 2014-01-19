@@ -1,0 +1,84 @@
+<div class="row">
+  <h1><%= my_garage.name %> <small>localization</small></h1>
+  <section class="col-md-2">
+<ul class="nav nav-pills nav-stacked">
+  <li><%= link_to "garage info", profile_path(my_garage) %></li>
+  <li><%= link_to "localization", localization_path(my_garage) %></li>
+  <li><%= link_to 'user', edit_user_registration_path %></li>
+  <li><%= link_to 'statistics', garage_statistics_path(my_garage) %></li>
+</ul>
+  </section>
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+  function initialize() {
+    var mapCanvas = document.getElementById('map_canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(<%=  my_garage.latitude %>, <%=  my_garage.longitude %>),
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+  }
+   google.maps.event.addDomListener(window, 'load', initialize);
+   $(document).on("page:load",initialize);
+</script>
+
+  <section class="col-md-10">
+    <style>
+      #map_canvas {
+        width: 100%;
+        height: 300px;
+    background-color: #CCC;
+      }
+    </style>
+    <div id="map_canvas"></div>
+
+    <div>
+           
+<%= form_for(my_garage, url: localization_path) do |f| %> 
+
+<div class="form-group">
+  <%= f.label :status %>
+  <%= f.select :status, my_garage.available_status, class: "form-control" %>  
+</div>
+
+<div class="form-group">
+  <%= f.label :latitude %>
+  <%= f.text_field :latitude, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :street %>
+  <%= f.text_field :street, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :city %>
+  <%= f.text_field :city, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :state %>
+  <%= f.text_field :state, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :country %>
+  <%= f.text_field :country, class: "form-control" %>
+</div>
+
+ <div class="actions">
+  <%= f.submit %>
+</div>  
+
+<% end %>
+
+
+
+
+    </div>
+  </section>
+</div>

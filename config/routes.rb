@@ -39,6 +39,9 @@ GsappWeb::Application.routes.draw do
 
   get ':name/profile' => 'garage#edit', as: :profile
   patch ':name/profile' => 'garage#update'
+  get ':name/localization' => 'garage#localization', as: :localization
+  patch ':name/localization' => 'garage#update_localization'
+  get ':name/statistics' => 'garage#statistics', as: :garage_statistics
 
   get ":name/promote" => 'promote#index', as: :promote
   get ":name/promote/widget" => 'promote#widget' , as: :promote_widget
