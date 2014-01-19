@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140118202024) do
     t.text     "description"
     t.text     "link"
     t.string   "tags",                  default: [], array: true
+    t.integer  "status",                default: 0
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -146,6 +147,7 @@ ActiveRecord::Schema.define(version: 20140118202024) do
     t.float    "value",                 default: 0.0
     t.string   "currency",                            null: false
     t.string   "tags",                  default: [],               array: true
+    t.integer  "status",                default: 0
     t.integer  "media_count"
     t.datetime "created_at"
     t.datetime "updated_at"

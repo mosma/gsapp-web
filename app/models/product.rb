@@ -19,6 +19,10 @@ class Product < ActiveRecord::Base
   acts_as_votable
   is_impressionable
 
+  #enum status: [ :available, :unavailable, :invisible, :sold, :on_hold, :rejected, :deleted ]
+  STATUS = { available: 0, unavailable: 1, invisible: 2, sold: 3,
+    on_hold: 4, rejected: 5, deleted: 6 }
+
   # mapping do
   #   indexes :id, type: 'integer'
   #   indexes :garage_id, type: 'integer'
@@ -63,6 +67,38 @@ class Product < ActiveRecord::Base
 
   def garage_name
     garage.name
+  end
+
+  def available_status
+    [
+      ['Available', STATUS[:available]],
+      ['Unavailable', STATUS[:unavailable]],
+      ['Sold', STATUS[:sold]],
+      ['Invisible', STATUS[:invisible]],
+      ['On Hold', STATUS[:on_hold]],
+    ]
+  end
+
+  def is_available?
+    self.status == STATUS[:available]
+  end
+  def is_unavailable?
+    self.status == STATUS[:unavailable]
+  end
+  def is_invisible?
+    self.status == STATUS[:invisible]
+  end
+  def is_sold?
+    self.status == STATUS[:sold]
+  end
+  def is_on_hold?
+    self.status == STATUS[:on_hold]
+  end
+  def is_rejected?
+    self.status == STATUS[:rejected]
+  end
+  def is_deleted?
+    self.status == STATUS[:deleted]
   end
 
   private

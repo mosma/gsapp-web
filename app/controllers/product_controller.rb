@@ -11,9 +11,12 @@ class ProductController < ApplicationController
   end
 
   def create
+    product = product_params
+    product[:tags] = product[:tags].split(',')
+    
     @path = new_product_path(my_garage)
 
-    @product = my_garage.products.build(product_params)
+    @product = my_garage.products.build(product)
     @product.slug = nil if @product.slug.empty?
 
     respond_to do |format|
@@ -43,9 +46,10 @@ class ProductController < ApplicationController
   end
 
   def update
-
+    product = product_params
+    product[:tags] = product[:tags].split(',')
     respond_to do |format|
-      if @product.update_attributes(product_params)
+      if @product.update_attributes(product)
         if @product.slug.empty?
           @product.slug = nil
           @product.save
@@ -83,7 +87,7 @@ class ProductController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :slug, :currency, :value, :tags, :description)
+      params.require(:product).permit(:name, :slug, :currency, :value, :tags, :description, :status)
     end
 
     def impressions

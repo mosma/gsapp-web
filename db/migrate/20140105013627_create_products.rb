@@ -8,6 +8,7 @@ class CreateProducts < ActiveRecord::Migration
       t.float :value, default: 0
       t.string :currency, null: false
       t.string :tags, array: true, default: []
+      t.integer :status, default: 0
 
       t.integer :media_count
 

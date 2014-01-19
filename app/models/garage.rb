@@ -19,7 +19,10 @@ class Garage < ActiveRecord::Base
   friendly_id :name, use: :slugged
   acts_as_votable
   is_impressionable
-  
+  #enum status: [ :visible, :invisible, :on_hold, :rejected, :deleted ]
+  STATUS = { visible: 0, invisible: 1, on_hold: 2, rejected: 3,
+    deleted: 4 }
+
   def self.search(params)
     tire.search(load: true) do
       query { string params[:query], default_operator: "OR" } if params[:query].present?
@@ -30,6 +33,22 @@ class Garage < ActiveRecord::Base
 
   def address
     [street, city, state, country].compact.join(', ')
+  end
+
+  def is_visible?
+    self.status == STATUS[:visible]
+  end
+  def is_invisible?
+    self.status == STATUS[:visible]
+  end
+  def is_on_hold?
+    self.status == STATUS[:visible]
+  end
+  def is_rejected?
+    self.status == STATUS[:visible]
+  end
+  def is_deleted?
+    self.status == STATUS[:visible]
   end
   
 end
