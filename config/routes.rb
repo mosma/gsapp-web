@@ -42,6 +42,7 @@ GsappWeb::Application.routes.draw do
   get ':name/localization' => 'garage#localization', as: :localization
   patch ':name/localization' => 'garage#update_localization'
   get ':name/statistics' => 'garage#statistics', as: :garage_statistics
+  get ':name/integrations' => 'garage#integrations', as: :garage_integrations
 
   get ":name/promote" => 'promote#index', as: :promote
   get ":name/promote/social_networks" => 'promote#social_networks' , as: :promote_social_networks

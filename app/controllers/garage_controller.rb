@@ -60,6 +60,11 @@ class GarageController < ApplicationController
   end
 
   def statistics
+    @statistics = @garage.brief_statistic_data
+    @extra_statistics = @garage.extra_statistic_data
+  end
+
+  def integrations
     
   end
 

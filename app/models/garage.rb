@@ -77,4 +77,18 @@ class Garage < ActiveRecord::Base
       }
     }
   end
+
+  def extra_statistic_data
+    {
+      products: {
+        total_views: 0,
+        most_viewd: 0,
+        total_contacts: 0,
+        most_contacted: 0,
+        total_likes: 0,
+        most_liked: 0,
+      }
+    }
+    
+  end
 end

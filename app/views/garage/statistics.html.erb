@@ -4,11 +4,37 @@
     <%= render 'garage/shared/profile_menu' %>
   </section>
   <section class="col-md-10">
-    <h2>Visitas únicas</h2>
-    <p>72</p>
-    <h3>Visualizações</h3>
-    <p>123</p>
-    <h3>Likes</h3>
-    <p>12</p>
+    <h3>Garage</h3>
+<ul>
+  <li>
+    <%= @statistics[:unique_views][:total] %> unique views 
+    <small><%= @statistics[:unique_views][:last_week] %> last week</small>
+  </li>
+  <li>
+    <%= @statistics[:page_views][:total] %> page-views 
+    <small><%= @statistics[:page_views][:last_week] %> last week</small>
+  </li>
+  <li>
+    <%= @statistics[:likes][:total] %> likes 
+    <small><%= @statistics[:likes][:last_week] %> last week</small>
+  </li>
+</ul>
+
+    <h3>Products</h3>
+<ul>
+  <li>
+    <%= @extra_statistics[:products][:total_views] %> total views 
+    <small>most viewd: <%= @extra_statistics[:products][:most_viewd] %></small>
+  </li>
+  <li>
+    <%= @extra_statistics[:products][:total_contacts] %> contacts 
+    <small>most contacted: <%= @extra_statistics[:products][:most_contacted] %></small>
+  </li>
+  <li>
+    <%= @extra_statistics[:products][:total_likes] %> likes 
+    <small>most liked: <%= @extra_statistics[:products][:most_liked] %></small>
+  </li>
+</ul>
+
   </section>
 </div>

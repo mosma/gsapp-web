@@ -51,7 +51,7 @@ class Product < ActiveRecord::Base
 
   self.include_root_in_json = false
   def to_indexed_json
-    to_json :methods => [:garage_name, :image]
+    to_json :methods => [:garage_name, :image, :garage_location]
   end
 
   def image
@@ -67,6 +67,17 @@ class Product < ActiveRecord::Base
 
   def garage_name
     garage.name
+  end
+
+  def garage_location
+    [
+      garage.latitude,
+      garage.longitude,
+      garage.street,
+      garage.city,
+      garage.state,
+      garage.country
+    ]
   end
 
   def available_status
