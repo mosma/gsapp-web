@@ -61,4 +61,20 @@ class Garage < ActiveRecord::Base
     ]
   end
   
+  def brief_statistic_data
+    {
+      unique_views: {
+        total: self.impressionist_count(:filter=>:session_hash),
+        last_week: self.impressionist_count(:filter=>:session_hash,:start_date=>1.week.ago,:end_date=>Time.now)
+      },
+      page_views: {
+        total: self.impressionist_count,
+        last_week: self.impressionist_count(:start_date=>1.week.ago,:end_date=>Time.now)
+      },
+      likes: {
+        total: self.votes.size,
+        last_week: self.votes.where(["created_at > ?", 1.week.ago]).size
+      }
+    }
+  end
 end

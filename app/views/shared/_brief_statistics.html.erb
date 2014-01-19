@@ -1,0 +1,14 @@
+<ul>
+  <li>
+    <%= @statistics[:unique_views][:total] %> unique views 
+    <small><%= @statistics[:unique_views][:last_week] %> last week</small>
+  </li>
+  <li>
+    <%= @statistics[:page_views][:total] %> page-views 
+    <small><%= @statistics[:page_views][:last_week] %> last week</small>
+  </li>
+  <li>
+    <%= @statistics[:likes][:total] %> likes 
+    <small><%= @statistics[:likes][:last_week] %> last week</small>
+  </li>
+</ul>

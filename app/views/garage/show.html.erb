@@ -10,12 +10,8 @@
 <section class="col-md-3">
   
   <% if is_my_garage? @garage %>
-  <h3> Statistics </h3>
-  <ul>
-    <li>17 unique views <small>8 last week</small></li>
-    <li>134 page-views <small>45 last week</small></li>
-    <li>123 likes <small>14 last week</small></li>
-  </ul>
+  <h3> garage Statistics </h3>
+  <%= render 'shared/brief_statistics' %>
   <hr>
   <% end %>
 

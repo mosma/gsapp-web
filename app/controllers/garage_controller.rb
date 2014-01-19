@@ -8,6 +8,7 @@ class GarageController < ApplicationController
 
   def show
     @products = @garage.products
+    @statistics = @garage.brief_statistic_data if is_my_garage? @garage
     respond_to do |format|
       format.html do
         impressionist(@garage)

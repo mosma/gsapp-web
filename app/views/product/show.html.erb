@@ -11,14 +11,10 @@
 </section>
 
 <section class="col-md-3">
-
-<h3>Social</h3>
- <%= render 'shared/social_product' %>
- <%= render 'shared/impressions_product' %>
-  
-  <hr>
-
-  <% if is_my_product? @product %>
+  <% if is_my_garage? @garage %>
+    <h3> garage Statistics </h3>
+    <%= render 'shared/brief_statistics' %>
+    <hr>
     <p>
       <%= link_to edit_product_path my_garage, @product do %>
         <span class="label label-info">
@@ -26,8 +22,13 @@
         </span>
       <% end %>
     </p>
-  <hr>
+    <hr>
   <% end %>
+
+<h3>Social</h3>
+ <%= render 'shared/social_product' %>
+ <%= render 'shared/impressions_product' %>
+  <hr>
 
   <h3>tags</h3>
   <% @product.tags.each do |tag| %>

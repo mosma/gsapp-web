@@ -31,6 +31,7 @@ class ProductController < ApplicationController
   end
 
   def show
+    @statistics = @product.brief_statistic_data if is_my_product? @product
     @garage = @product.garage
     @products = @garage.products
     respond_to do |format|
