@@ -39,7 +39,7 @@ class GarageController < ApplicationController
   end
 
   def products
-    @products = my_garage.products
+    @products = my_garage.products.paginate(:page => params[:page]||1, :per_page => 5)
     
   end
 
