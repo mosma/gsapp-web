@@ -1,0 +1,5 @@
+<%= form_for(Message.new, url: send_message_path) do |f| %> 
+  <%= f.text_area :message %>
+  <br>
+  <%= f.submit 'Enviar' %>
+<% end %>

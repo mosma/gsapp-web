@@ -1,0 +1,31 @@
+<div class="row">
+  <h1><%= my_garage.name %> <small>produtos</small></h1>
+  <section class="col-md-2">
+    <%= render 'garage/shared/profile_menu' %>
+  </section>
+  <section class="col-md-10">
+
+<table class="table table-condensed  table-striped">
+  <thead>
+    <tr>
+      <th>Produto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |p| %>
+    <tr>
+      <td>
+        <%= image_tag p.image(:thumb), style: 'height: 40px;' %>
+        <%= link_to "##{p.id} - #{p.name} - #{p.value}" %> 
+        - 
+        <%= link_to "desabilitar", "#", class: 'btn btn-danger pull-right' %>
+        <%= link_to "alterar", edit_product_path(my_garage, p), class: 'btn btn-primary pull-right' %>
+        <%= link_to "vendido", "#", class: 'btn btn-warning pull-right' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </section>
+</div>

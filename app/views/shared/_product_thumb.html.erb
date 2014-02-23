@@ -2,15 +2,15 @@
   <%= link_to product_path(name: product.garage_name, id: product.slug) do %>
   <div class="thumbnail">
     <style type="text/css" media="screen">
-      .thumbnail .img<%= product.id  %> {
+      .thumbnail .img_prod<%= product.id  %> {
         background-image: url(<%= product.image  %>)
       }
     </style>
-    <div class="img img<%= product.id  %>"></div>
+    <div class="img img_prod<%= product.id  %>"></div>
     
     <div class="caption">
       <h1><span class="label label-success"><%=  show_value product %></span></h1>
-      <h3><%= truncate(product.name, length: 20) %></h3>
+      <h3><%= truncate(product.name, length: 14) %></h3>
       <p><%= truncate(product.description, length: 20) %></p>
       <% if is_my_product? product %>
       <p>

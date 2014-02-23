@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def index
 
     #@garages = Garage.search params
-    @products = Product.search params
+    @products = Product.search(params, (params[:page] || 1))
     respond_to do |format|
       format.html { 
         render :index, layout: false if !params[:no_layout].nil?

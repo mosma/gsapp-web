@@ -1,0 +1,12 @@
+
+<% if product.messages.size <= 0 %>
+Ainda não recebeu nenhuma mensage, 
+<a href="#">atualize as informações do seu produto</a>
+para receber mais contatos
+<% else %>
+  <% product.messages.each do |m| %>
+  <%= m.message %>
+  <br>
+  from: <%= m.from.name %>
+  <% end %>
+<% end %>

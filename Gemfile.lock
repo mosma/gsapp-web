@@ -92,6 +92,7 @@ GEM
     friendly_id (5.0.2)
       activerecord (~> 4.0.0)
     geocoder (1.1.9)
+    gravatar_image_tag (1.2.0)
     hashie (2.0.5)
     hashr (0.0.22)
     hike (1.2.3)
@@ -316,6 +317,7 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
@@ -333,6 +335,7 @@ DEPENDENCIES
   ffaker
   friendly_id (~> 5.0.0)
   geocoder
+  gravatar_image_tag
   impressionist
   jbuilder
   jquery-fileupload-rails
@@ -370,3 +373,4 @@ DEPENDENCIES
   turbolinks
   uglifier
   webrat
+  will_paginate (~> 3.0)

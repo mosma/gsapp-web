@@ -7,6 +7,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.float :value, default: 0
       t.string :currency, null: false
+      t.string :link
       t.string :tags, array: true, default: []
       t.integer :status, default: 0
 

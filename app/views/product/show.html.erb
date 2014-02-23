@@ -26,8 +26,12 @@
   <% end %>
 
 <h3>Social</h3>
- <%= render 'shared/social_product' %>
- <%= render 'shared/impressions_product' %>
+ <%= render 'shared/social_product', product: @product %>
+ <%= render 'shared/impressions_product', product: @product %>
+ <hr>
+ <h3>Mensagens</h3>
+ <%= render 'shared/message_list', product: @product if is_my_garage? @garage %>
+ <%= render 'shared/send_message', product: @product unless is_my_garage? @garage %>
   <hr>
 
   <h3>tags</h3>
@@ -45,9 +49,17 @@
 </section>
 </div>
 
+<% unless is_my_garage? @garage %>
 <div class="row">
    <h1>Other products of <%= link_to @product.garage.name, @product.garage%></h1>
   <% @products.each do |product| %>
     <%= render "shared/product_thumb", product: product %>
   <% end %>
 </div>
+<% else %>
+<div class="row">
+  <h1>Messages</h1>
+  <%= render 'shared/message_list', product: @product %>
+</div>
+<br>
+<% end %>

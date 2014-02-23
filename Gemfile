@@ -31,6 +31,8 @@ gem 'tire'
 gem 'redis'
 gem 'acts_as_votable'
 gem 'impressionist'
+gem 'will_paginate', '~> 3.0'
+gem 'gravatar_image_tag'
 
 gem 'mandrill-api'
 gem 'mailchimp-api'

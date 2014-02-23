@@ -1,4 +1,11 @@
+require 'sidekiq/web'
+
 GsappWeb::Application.routes.draw do
+
+  
+  post "messages/:id" => 'messages#send', as: :send_message
+  get "messages/:id" => 'messages#conversation', as: :conversation
+  mount Sidekiq::Web => '/sidekiq'
 
   root 'home#index'
 
@@ -43,6 +50,8 @@ GsappWeb::Application.routes.draw do
   patch ':name/localization' => 'garage#update_localization'
   get ':name/statistics' => 'garage#statistics', as: :garage_statistics
   get ':name/integrations' => 'garage#integrations', as: :garage_integrations
+
+  get ':name/products' => 'garage#products', as: :garage_products
 
   get ":name/promote" => 'promote#index', as: :promote
   get ":name/promote/social_networks" => 'promote#social_networks' , as: :promote_social_networks

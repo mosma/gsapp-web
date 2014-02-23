@@ -1,0 +1,5 @@
+pidfile: tmp/pids/sidekiq.pid
+:concurrency: 1
+:queues:
+  - [garages, 3]
+  - [products, 1]

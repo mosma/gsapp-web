@@ -33,6 +33,15 @@ class Garage < ActiveRecord::Base
     end
   end
 
+  self.include_root_in_json = false
+  def to_indexed_json
+    to_json :methods => [:user_email]
+  end
+
+  def user_email
+    user.email
+  end
+
   def address
     [street, city, state, country].compact.join(', ')
   end

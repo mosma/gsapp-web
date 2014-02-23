@@ -1,7 +1,7 @@
 class GarageController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update, :like, :unlike]
+  before_filter :authenticate_user!, only: [:edit, :update, :like, :unlike, :products]
   before_action :set_garage, only: [:show, :edit, :update, :tags, :like, :unlike, 
-    :localization, :update_localization, :statistics]
+    :localization, :update_localization, :statistics, :products]
 
   def index
   end
@@ -38,6 +38,10 @@ class GarageController < ApplicationController
     end
   end
 
+  def products
+    @products = my_garage.products
+    
+  end
 
   def localization
   end

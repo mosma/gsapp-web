@@ -1,12 +1,13 @@
 <% if !params[:no_layout].nil? %>
-<% @products.each do |product| %>
-  <%= render "shared/product_thumb", product: product %>
-<% end %>
+  <% @products.each do |product| %>
+    <%= render "shared/product_thumb", product: product %>
+  <% end %>
 <% else %>
-<h1>Results</h1>
-<section class="row">
-<% @products.each do |product| %>
-  <%= render "shared/product_thumb", product: product %>
-<% end %>
-</section>
+  <h1>Results</h1>
+  <section class="row">
+  <% @products.each do |product| %>
+    <%= render "shared/product_thumb", product: product %>
+  <% end %>
+  </section>
+  <%= will_paginate @products %>
 <% end %>

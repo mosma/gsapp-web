@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140118202024) do
+ActiveRecord::Schema.define(version: 20140222233157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,22 @@ ActiveRecord::Schema.define(version: 20140118202024) do
   add_index "media", ["product_id"], name: "index_media_on_product_id", using: :btree
   add_index "media", ["user_id"], name: "index_media_on_user_id", using: :btree
 
+  create_table "messages", force: true do |t|
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.integer  "topic_id"
+    t.integer  "product_id"
+    t.text     "message"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
+  add_index "messages", ["product_id"], name: "index_messages_on_product_id", using: :btree
+  add_index "messages", ["to_id"], name: "index_messages_on_to_id", using: :btree
+  add_index "messages", ["topic_id"], name: "index_messages_on_topic_id", using: :btree
+
   create_table "products", force: true do |t|
     t.integer  "garage_id"
     t.string   "name",                                null: false
@@ -146,6 +162,7 @@ ActiveRecord::Schema.define(version: 20140118202024) do
     t.text     "description"
     t.float    "value",                 default: 0.0
     t.string   "currency",                            null: false
+    t.string   "link"
     t.string   "tags",                  default: [],               array: true
     t.integer  "status",                default: 0
     t.integer  "media_count"

@@ -19,6 +19,8 @@ class Product < ActiveRecord::Base
   acts_as_votable
   is_impressionable
 
+  has_many :messages
+
   #enum status: [ :available, :unavailable, :invisible, :sold, :on_hold, :rejected, :deleted ]
   STATUS = { available: 0, unavailable: 1, invisible: 2, sold: 3,
     on_hold: 4, rejected: 5, deleted: 6 }
@@ -37,8 +39,8 @@ class Product < ActiveRecord::Base
   #   indexes :updated_at, type: 'date'
   # end
 
-  def self.search(params)
-    tire.search() do
+  def self.search(params, page)
+    tire.search(page: page, per_page: 20) do
       query do
         boolean do 
           must { string params[:query], default_operator: "OR" } if params[:query].present?
@@ -54,11 +56,11 @@ class Product < ActiveRecord::Base
     to_json :methods => [:garage_name, :image, :garage_location]
   end
 
-  def image
+  def image(img = :medium)
     if medias.size == 0
       return "/img/product_missing.png"
     end
-    medias.first.image
+    medias.first.image.url(img)
   end
 
   def user
